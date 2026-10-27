@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#0b6a58">
+<meta name="description" content="NEMCO College Student Simulator - a 3D open-world college life game.">
+<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="NEMCO Simulator"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icons/favicon.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>NEMCO College Student Simulator</title>
+<link rel="stylesheet" href="css/style.css">
+</head><body>
+
+<div id="load" class="scr"><div class="fx"></div><div class="fac"></div><img class="logoimg" src="icons/icon-192.png" alt="NEMCO Simulator">
+<h1 id="ttl"></h1><p class="sub">COLLEGE STUDENT SIMULATOR</p>
+<div class="bar"><i id="barf"></i></div><p id="pct" style="font-weight:800">Loading School... 0%</p><p id="tip"></p>
+<small style="font-weight:700">🔊 Tap / click anywhere to enable sound</small></div>
+
+<div id="select" class="scr hid"><div class="fx"></div><div class="fac"></div>
+<div class="panel"><h2>CREATE YOUR STUDENT</h2>
+<div class="cs">
+ <div class="pv"><canvas id="pvc"></canvas>
+  <div class="pb"><button id="bm" class="gb sel">♂ MALE</button><button id="bf" class="gb">♀ FEMALE</button></div></div>
+ <div class="rt">
+  <div class="opts"><b>COURSE</b><div id="courses" class="chips"></div>
+   <b>HAIR STYLE</b><div id="styles" class="chips"></div>
+   <b>HAIR COLOR</b><div id="hcols" class="sw"></div>
+   <b>SKIN TONE</b><div id="skins" class="sw"></div><div id="note"></div></div>
+  <input id="nm" type="text" maxlength="14" placeholder="Student Name" autocomplete="off">
+  <div id="err"></div>
+  <button id="start" class="big">▶ NEW GAME</button>
+  <div class="row"><button id="cont">CONTINUE</button><button id="set1">SETTINGS</button><button id="inst1" class="instbtn">📲 INSTALL APP</button></div>
+ </div></div></div></div>
+
+<div id="game"></div>
+<div id="hud" class="hid">
+ <div id="tl">
+  <div id="mmw" class="glass"><canvas id="mm" width="180" height="180"></canvas><div id="loc"></div></div>
+  <div id="clk" class="glass"><b id="tm"></b><span id="dayl"></span><small id="sch"></small></div>
+  <div id="mtr" class="glass"><b id="mtT"></b><span id="mtO"></span><small id="od"></small></div>
+ </div>
+ <div id="tr" class="glass">
+  <canvas id="av" width="96" height="96"></canvas>
+  <div class="ti"><b id="hn"></b><small id="cls"></small>
+   <div class="eb" title="Energy"><span class="el">⚡</span><div class="ebar"><i id="ebf"></i></div><span id="ept">100%</span></div>
+   <div class="eb hb" title="Hunger"><span class="el">🍽</span><div class="ebar"><i id="hbf"></i></div><span id="hpt">100%</span></div>
+   <div class="st2"><span id="coin">₱0</span><span id="lvl">Lv 1</span></div>
+   <div class="xpb"><i id="xpf"></i></div></div>
+ </div>
+ <div id="tired" class="glass hid">😴 You're tired! Go back to your boarding house to rest.</div>
+ <div id="qb"><button data-m="missions" title="Missions (J)">📋</button><button data-m="inventory" title="Inventory (I)">🎒</button><button data-m="status" title="Student status (P)">👤</button><button id="pbtn" title="Pause (Esc)">❚❚</button></div>
+ <div id="h3" class="glass"><span class="k">WASD</span>Move <span class="k">SHIFT</span>Run <span class="k">SPACE</span>Jump <span class="k">E</span>Interact<br><span class="k">J</span>Missions <span class="k">I</span>Items <span class="k">P</span>Status <span class="k">ESC</span>Menu</div>
+ <div id="prompt" class="glass hid"></div>
+ <div id="nots"></div>
+ <div id="meter" class="glass hid"><div id="mtrk"><i id="mz"></i><b id="mk"></b></div><small id="mtxt">Press E / SHOOT at the green zone</small></div>
+ <div id="timer" class="glass hid"></div>
+</div>
+<div id="touch" class="hid"><div id="jz"></div><div id="joy"><div id="knob"></div></div>
+ <div id="bR" class="tb">RUN</div><div id="bJ" class="tb">JUMP</div><div id="bE" class="tb">E</div><div id="bI" class="tb">🎒</div>
+ <div id="vc" class="hid"><div id="vG" class="tb">GAS</div><div id="vB" class="tb">BRAKE</div><div id="vH" class="tb">📯</div><div id="vX" class="tb">EXIT</div></div></div>
+<div id="dlg" class="glass hid"></div>
+<div id="fade" class="hid"><div id="fadet"></div></div>
+<div id="rotate" class="hid"><div>📱↻<p>Please rotate your phone <b>horizontally</b> (landscape) to play.</p><button id="rotok">Try auto-rotate</button></div></div>
+
+<div id="menu" class="ov hid"><div class="panel mp">
+ <div id="mtabs"><button data-t="missions">📋 Missions</button><button data-t="inventory">🎒 Items</button><button data-t="status">👤 Student</button><button data-t="friends">💚 Friends</button><button data-t="wardrobe">👕 Outfits</button><button data-t="settings">⚙ Settings</button></div>
+ <div id="mbody"></div><button id="mclose">Close</button></div></div>
+
+<div id="pause" class="ov hid"><h1>PAUSED</h1>
+<button id="bres" class="big">▶ Resume</button><button id="bmis">📋 Missions</button><button id="bstat">👤 Student Status</button><button id="bset">⚙ Settings</button><button id="brest">↺ Restart Game</button><button id="bexit">⌂ Return to Menu</button></div>
+
+<div id="settings" class="ov hid"><div class="panel"><h2>SETTINGS</h2>
+<label>Master Volume <input type="range" id="s1" value="80"></label>
+<label>Music Volume <input type="range" id="s2" value="55"></label>
+<label>Sound Effects <input type="range" id="s3" value="70"></label>
+<label>Ambient Sounds <input type="range" id="s6" value="60"></label>
+<label>Camera Sensitivity <input type="range" id="s4" min="1" max="10" value="5"></label>
+<label>Graphics <select id="s5"><option value="low">Low (fast)</option><option value="med" selected>Medium</option><option value="high">High (shadows)</option></select></label>
+<div class="row"><button id="sfs">Fullscreen</button><button id="inst2" class="instbtn">📲 Install App</button></div>
+<small id="inststat"></small>
+<small class="kh">WASD move · SHIFT run · SPACE jump · E interact · J missions · I items · P status · M music · ESC menu</small>
+<small id="verl"></small>
+<button id="sclose">Close</button></div></div>
+
+<div id="ovl" class="hid"></div>
+<div id="toastu" class="hid"></div>
+
+<script src="js/three.min.js"></script>
+<script src="js/gfx.js"></script>
+<script src="js/base.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/state.js"></script>
+<script src="js/world.js"></script>
+<script src="js/interior.js"></script>
+<script src="js/npc.js"></script>
+<script src="js/missions.js"></script>
+<script src="js/vehicle.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/game.js"></script>
+<script src="js/pwa.js"></script>
+</body></html>

@@ -1,0 +1,21 @@
+{
+  "id": "./",
+  "name": "NEMCO College Student Simulator",
+  "short_name": "NEMCO Simulator",
+  "description": "3D open-world college student simulator set in Northeastern Mindanao Colleges (NEMCO). Attend classes, finish missions, manage energy and hunger, and survive your first week.",
+  "start_url": "./index.html?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["fullscreen", "standalone"],
+  "orientation": "landscape",
+  "theme_color": "#0b6a58",
+  "background_color": "#06201c",
+  "lang": "en",
+  "categories": ["games", "education"],
+  "icons": [
+    {"src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icons/maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable"},
+    {"src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
